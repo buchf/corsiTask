@@ -52,7 +52,16 @@ public class DataSaver : MonoBehaviour
 
 
 
-        //  File.WriteAllText(filePath, "Corsi");
+        /*
+         * z1 ist die Struktur fuer die "overall" - Results
+         * z1 ist zustaendig fuer die gesamten richtigen Sequenzen, die Genauigkeit 
+         * der erzielten Klicks, die Gesamte benoetigte Zeit fuer die Sequenz in ms
+         *
+         * anschliessend wird z2 angehaengt, welche jeden input ueber die drei MeasuereSequenz Funktionen 
+         * bekommt (siehe unten)
+         * 
+         * 
+         */
 
         z1.Append("Corsi\n" + ",Sequenzes correct:," + rightTask + " of " + Player.currentSequenzCounter + "\n");
         z1.Append(",Clicks Accuracy:," + accuracyPercentage.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "%\n" + ",total Time: ," + totalTime.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) +"ms\n");
@@ -63,6 +72,11 @@ public class DataSaver : MonoBehaviour
 
     }
 
+
+    /*
+     * Notwendige funktion um die Liste results in einen String umzuwandeln,
+     * da die Funktion File.WriteAllText() einen String benoetigt
+     */
     private string listToString(List<StringBuilder> results)
     {
         string x = "";
@@ -75,7 +89,16 @@ public class DataSaver : MonoBehaviour
     }
 
 
-    //measuere writing functions and adding to the List results
+    /* 
+     * measuere writing functions and adding to the List results 
+     * 
+     * Drei verschieden, da es drei verschieden lange Sequenzen gibt 
+     * die Funktionen werden in der Klasse Player aufgerufen mit Hilfe
+     * der WriteInDatasaver() Funktion
+     * 
+     * Die Daten weden im Stringbuilder z2 abgespeichert und anschliessend
+     * in der obigen Start() Funktion in die Liste results hinzugefuegt
+     */
     public static void MeasureSequenzOne(int id,bool fullSequenz, double reaction, int click1, int click2)
     {
         z2.AppendFormat(",sequenz{0},{1},{2}ms,{3},{4}\n", id , fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1 ,click2 );

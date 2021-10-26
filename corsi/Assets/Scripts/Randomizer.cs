@@ -33,14 +33,14 @@ public class Randomizer : MonoBehaviour
         fairy.transform.position = new Vector3(-7f, 3f, -1);
         randomNumbers.Clear();
         
-        if (count1 == 3 && count2 != 0)
+        if (count1 == 3 && count2 != 7)
         {
             count1 = 0;
             count2++;
         } 
 
         // 3 7 richtig
-        if(count1 == 3 && count2 == 0)
+        if(count1 == 3 && count2 == 7)
         {
             //Finish the whole Sequenz so the OutroScene is loaded
             Debug.Log("FINISH");
@@ -53,42 +53,42 @@ public class Randomizer : MonoBehaviour
         
 
         //Zahlen fuer die verschiedenen Trials wurden mithilfe der GetRandom Funktion erstellt
-        //Trial 1 
+        //Sequenz 1 
         if (count1 == 0 && count2 == 0) StartCoroutine(SequenzOne(5,1));  
         if (count1 == 1 && count2 == 0) StartCoroutine(SequenzTwo(1,5,9));
         if (count1 == 2 && count2 == 0) StartCoroutine(SequenzThree(8,4,9,6));
 
-        //Trial 2
+        //Sequenz 2
         if (count1 == 0 && count2 == 1) StartCoroutine(SequenzOne(8,1));
         if (count1 == 1 && count2 == 1) StartCoroutine(SequenzTwo(1,4,9));
         if (count1 == 2 && count2 == 1) StartCoroutine(SequenzThree(5,6,9,2));
 
-        //Trial 3
+        //Sequenz 3
         if (count1 == 0 && count2 == 2) StartCoroutine(SequenzOne(5,3));
         if (count1 == 1 && count2 == 2) StartCoroutine(SequenzTwo(2,8,6));
         if (count1 == 2 && count2 == 2) StartCoroutine(SequenzThree(1,9,3,6));
 
-        //Trial 4
+        //TriSequenzal 4
         if (count1 == 0 && count2 == 3) StartCoroutine(SequenzOne(9,8));
         if (count1 == 1 && count2 == 3) StartCoroutine(SequenzTwo(5,2,9));
         if (count1 == 2 && count2 == 3) StartCoroutine(SequenzThree(9,1,7,6));
 
-        //Trial 5
+        //Sequenz 5
         if (count1 == 0 && count2 == 4) StartCoroutine(SequenzOne(7,2));
         if (count1 == 1 && count2 == 4) StartCoroutine(SequenzTwo(7,8,2));
         if (count1 == 2 && count2 == 4) StartCoroutine(SequenzThree(1,2,7,5));
 
-        //Trial 6
+        //Sequenz 6
         if (count1 == 0 && count2 == 5) StartCoroutine(SequenzOne(7,8));
         if (count1 == 1 && count2 == 5) StartCoroutine(SequenzTwo(5,2,8));
         if (count1 == 2 && count2 == 5) StartCoroutine(SequenzThree(1,9,3,8));
 
-        //Trial 7
+        //Sequenz 7
         if (count1 == 0 && count2 == 6) StartCoroutine(SequenzOne(7,6));
         if (count1 == 1 && count2 == 6) StartCoroutine(SequenzTwo(9,4,3));
         if (count1 == 2 && count2 == 6) StartCoroutine(SequenzThree(9,7,3,8));
 
-        //Trial 8
+        //Sequenz 8
         if (count1 == 0 && count2 == 7) StartCoroutine(SequenzOne(7,9));
         if (count1 == 1 && count2 == 7) StartCoroutine(SequenzTwo(9,2,7));
         if (count1 == 2 && count2 == 7) StartCoroutine(SequenzThree(9,2,6,8));
@@ -98,6 +98,13 @@ public class Randomizer : MonoBehaviour
     }
 
     /*
+     * 
+     * Diese drei funktionen koennen verwendet werden wenn man die Fee 
+     * randomiesiert fliegen lassen will ohne das ein Block 
+     * mehrmals innerhalb einer Sequenz getroffen wird
+     * 
+     * 
+     * 
     void GetRandomBlock()
     {
 
@@ -170,6 +177,10 @@ public class Randomizer : MonoBehaviour
     }
     */
     
+
+    /*funktiion welche die nummer des blocks nimmt und dann der fee ueber eine switch case die koordinaten zuweist
+     * die z koordinate wurde auf -1 gesetzt damit die fee vor dem block spawnt (verschiedenes layer)
+     */
     void SpawnFairyInBlock(int blockNumber)
     {
         switch (blockNumber)
@@ -213,7 +224,13 @@ public class Randomizer : MonoBehaviour
         }
     }
 
-    //Trial 1
+    /*IEnumerator um die Fee fliegen zu lassen
+     * es wird acht mal 
+     * SequenzOne, SequenzTwo, SequenzThree in dieser Reihenfolge oben verwendet
+     * 
+     * a,b,c,d sind die Bloecke in denen die Fee Spawnt
+     * 
+     */
     IEnumerator SequenzOne(int a, int b)
     {
         disabeleField();
@@ -260,6 +277,15 @@ public class Randomizer : MonoBehaviour
         Player.timer.Start();
     }
 
+
+
+    /*
+     * enableField und disableField sind funktionen um das gesamte Spielfeld zu Blockieren,
+     * sodass waehrend der Animation keine Input auf dem Bildschirm verfuegbar ist
+     * 
+     * werden in der ueberliegenden Funktionen verwendet (vor einer Sequenz und wenn Sie 
+     * durchgelaufen ist) 
+     */
     void enableField()
     {
         for(int i = 0; i< blocks.Count;i++)

@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BlockClick : MonoBehaviour
 {
+
+    /*BlockClick Script for the ClickAnimation (mainly)
+     * 
+     * also adding the clicked Block into the clickedBlock List 
+     * its needed for the compareLists function in the Player Script
+     */
+
     private Player player;
-    //public List<GameObject> blocks = new List<GameObject>();
     private void Start()
     {
         player = FindObjectOfType<Player>();
@@ -20,6 +26,8 @@ public class BlockClick : MonoBehaviour
         }
     }
 
+
+    //Block der geklickt wird, ist fuer 0.2 sekunden grau und wird anschliessend wieder weiss
     IEnumerator ClickTimeAnimation()
     {
 

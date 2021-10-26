@@ -5,9 +5,12 @@ using System.Diagnostics;
 
 public class Player : MonoBehaviour
 {
+
+
     public List<GameObject> clickedBlocks = new List<GameObject>();
     public List<GameObject> sequenzBlocks = new List<GameObject>();
     public GameObject circle;
+
 
     public int rightTaskCounter;
     public int falseTaskCounter;
@@ -18,11 +21,10 @@ public class Player : MonoBehaviour
     public static Stopwatch timer = new Stopwatch();
 
     bool listCompareVar;
-    private Randomizer randomizer;
 
-    
-
-    //public DataSaver datasaver;
+    /*
+     * Start() Funktion wird beim Programmstart aufgerufen um die Variablen zu bereinigen und alles auf default 0 zu setzten
+     */
     void Start()
     {
         DataSaver.totalTime = 0.0d;
@@ -34,17 +36,23 @@ public class Player : MonoBehaviour
         clickedBlocks.Clear();
     }
 
+
+    /*
+     * Update() Funktion wird benutzt damit die Testperson nicht mehr Klicks als erfordelich ausfuehren kann bzw. die Klicks
+     * nicht abgespeichert werden
+     */
     private void Update()
     {
         if(clickedBlocks.Count > sequenzBlocks.Count)
         {
             clickedBlocks.RemoveAt(clickedBlocks.Count - 1);
             totalClicksCounter--;
-            //randomizer.disabeleField();
         }
     }
 
-
+    /*
+     * Ruft CompareLists auf und leert anschliessend die Listen der Sequenz und der geklickten Bloecke
+     */
     public void CleanLists()
     {
         CompareLists();
@@ -58,40 +66,33 @@ public class Player : MonoBehaviour
     }
 
 
-    //public bool CompareLists()
-    //{
-    //    int x = clickedBlocks.Count;
-    //    int y = sequenzBlocks.Count;
-    //    if (x != y)
-    //    {
-    //        circle.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-    //        falseTaskCounter++;
-    //        return false;
-    //    }
-    //    for (int i = 0; i<x; i++)
-    //    {
-    //        if(clickedBlocks[i] != sequenzBlocks[i])
-    //        {
-    //            circle.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-    //            falseTaskCounter++;
-    //           return false;
-    //        }
-    //    }
-    //    circle.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
-    //    rightTaskCounter++;
-    //    return true;
-    //}
 
+    /*
+     * Der Timer wird beim Aufruf der CompareList Funktion gestoppt und anschliessen wird die Zeit zur Gesamten Zeit addiert
+     * CurrentSequenzCounter wird erhoeht (variable ist nur notwendig fuer die CSV datei spaeter um die Trial no. zu benennen)
+     * 
+     * x und y sind jeweils die laengen von der geklickten Liste und der Sequenz Liste. y ist z.B. maximal 4
+     * 
+     * der Array clicks wird mit einer laenge von 4 erstellt mit einer -1 an jeder Stelle
+     * Falls garkein Klick erfolgt wird in die CSV eine -1 eingefuegt an der stelle 0 = falsch und 1 = richtiger Klick
+     * deswegen werden alle Klicks am Anfang automatisch auf -1 gesetzt
+     * 
+     * listCompareVar ist eine boolean variable welche fuer die Aktuelle Sequenz belegt ob Sie True oder False ist
+     * Diese Variable wird auch anschliessend ind die CSV mit uebernommen, um zu sehen welche Sequenz NR richtig oder Falsch ist
+     * 
+     * Am Ende der Funktion wird geprueft ob die Boolean variable (listCompareVar) richtig oder falsch ist und anschliessend die Informationen
+     * mithilfe der WriteInDatasaver() Funktion abgespeichert 
+     * 
+     * Da y = die laenge der aktuellen Sequenz  ist wird in der WriteInDataSaver bestimmt ob 2,3 oder vier Klicks erwartet wurden
+     * 
+     */
     public bool CompareLists()
     {
-        
         timer.Stop();
         DataSaver.totalTime += timer.Elapsed.TotalMilliseconds;
         currentSequenzCounter++;
         int x = clickedBlocks.Count;
         int y = sequenzBlocks.Count;
-
-        //int click1 = 0, click2 = 0, click3 = 0, click4 = 0 ;
         int[] clicks = {-1,-1,-1,-1};
         listCompareVar = true;
 
@@ -128,10 +129,8 @@ public class Player : MonoBehaviour
             timer.Reset();
             return listCompareVar;
         }
-
         falseTaskCounter++;
         circle.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-
         WriteInDatasaver(currentSequenzCounter, clicks[0], clicks[1], clicks[2], clicks[3], y);
         timer.Reset();
         return listCompareVar;
@@ -140,8 +139,6 @@ public class Player : MonoBehaviour
 
     private void WriteInDatasaver(int count, int click1, int click2, int click3, int click4, int sequenzLength)
     {
-
-        //Debug.Log("open");
         if (sequenzLength == 2) DataSaver.MeasureSequenzOne(count, listCompareVar, timer.Elapsed.TotalMilliseconds,click1,click2);
         if (sequenzLength == 3) DataSaver.MeasureSequenzTwo(count, listCompareVar,timer.Elapsed.TotalMilliseconds, click1,click2,click3);
         if (sequenzLength == 4) DataSaver.MeasureSequenzThree(count, listCompareVar, timer.Elapsed.TotalMilliseconds, click1, click2, click3,click4); ;
