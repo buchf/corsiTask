@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     public List<GameObject> clickedBlocks = new List<GameObject>();
     public List<GameObject> sequenzBlocks = new List<GameObject>();
-    public GameObject circle;
+    //public GameObject circle;
 
 
     public int rightTaskCounter;
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
         if (x != y)
         {
-            circle.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            
             listCompareVar = false;
         }
         if(x > y)
@@ -124,13 +124,11 @@ public class Player : MonoBehaviour
         if (listCompareVar)
         {
             rightTaskCounter++;
-            circle.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
             WriteInDatasaver(currentSequenzCounter, clicks[0], clicks[1], clicks[2], clicks[3], y);
             timer.Reset();
             return listCompareVar;
         }
         falseTaskCounter++;
-        circle.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
         WriteInDatasaver(currentSequenzCounter, clicks[0], clicks[1], clicks[2], clicks[3], y);
         timer.Reset();
         return listCompareVar;

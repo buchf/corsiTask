@@ -28,6 +28,8 @@ public class DataSaver : MonoBehaviour
     //Number for full programm for e.g.  (2 + 3 + 4) * 8 Trials = 72
     int amountOfFullCorsiTaskClicks =  72;
 
+
+    //VPN nummer soll im gesamten project den Input vom Textfeld VPN bekommen sodass die datei auf diejenige Versuchsperson sich bezieht
     public static int VPN; 
     static string fileName = "VPN"+ VPN + "_corsi.csv";
     
