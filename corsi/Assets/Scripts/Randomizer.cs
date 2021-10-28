@@ -28,7 +28,7 @@ public class Randomizer : MonoBehaviour
   
     public void StartSequenz()
     {
-        Debug.Log(DataSaver.filePath.ToString());
+        //Debug.Log(DataSaver.filePath.ToString());
         fairy.SetActive(true);
         fairy.transform.position = new Vector3(-7f, 3f, -1);
         randomNumbers.Clear();
