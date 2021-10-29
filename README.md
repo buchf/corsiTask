@@ -1,6 +1,9 @@
 # corsiTask
 Corsi Task Application created with Unity
 
+How to run it on Android Tablet:
+  1. Go into corsiTask/corsi/AndroidBuild
+  2. Install the corsi.apk on the device
 
 How to get it on PC running :
   1. Using Unity Version 2020.3.17f1
