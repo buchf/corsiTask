@@ -30,8 +30,8 @@ public class DataSaver : MonoBehaviour
 
 
     //VPN nummer soll im gesamten project den Input vom Textfeld VPN bekommen sodass die datei auf diejenige Versuchsperson sich bezieht
-    public static int VPN; 
-    static string fileName = "VPN"+ VPN + "_corsi.csv";
+    public static string VPN;
+    static string fileName;
 
     public static string filePath;
    
@@ -45,7 +45,7 @@ public class DataSaver : MonoBehaviour
 
     private void Start()
     {
-
+        fileName = "VPN" + VPN + "_corsi.csv";
         filePath = Path.Combine(Application.persistentDataPath, fileName);
 
 
