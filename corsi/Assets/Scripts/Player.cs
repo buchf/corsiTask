@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         int[] clicks = {-1,-1,-1,-1};
         listCompareVar = true;
 
+       
         if (x != y)
         {
             
@@ -124,21 +125,21 @@ public class Player : MonoBehaviour
         if (listCompareVar)
         {
             rightTaskCounter++;
-            WriteInDatasaver(currentSequenzCounter, clicks[0], clicks[1], clicks[2], clicks[3], y);
+            WriteInDatasaver(clicks[0], clicks[1], clicks[2], clicks[3], y);
             timer.Reset();
             return listCompareVar;
         }
         falseTaskCounter++;
-        WriteInDatasaver(currentSequenzCounter, clicks[0], clicks[1], clicks[2], clicks[3], y);
+        WriteInDatasaver(clicks[0], clicks[1], clicks[2], clicks[3], y);
         timer.Reset();
         return listCompareVar;
     }
 
 
-    private void WriteInDatasaver(int count, int click1, int click2, int click3, int click4, int sequenzLength)
+    private void WriteInDatasaver (int click1, int click2, int click3, int click4, int sequenzLength)
     {
-        if (sequenzLength == 2) DataSaver.MeasureSequenzOne(count, listCompareVar, timer.Elapsed.TotalMilliseconds,click1,click2);
-        if (sequenzLength == 3) DataSaver.MeasureSequenzTwo(count, listCompareVar,timer.Elapsed.TotalMilliseconds, click1,click2,click3);
-        if (sequenzLength == 4) DataSaver.MeasureSequenzThree(count, listCompareVar, timer.Elapsed.TotalMilliseconds, click1, click2, click3,click4); ;
+        if (sequenzLength == 2) DataSaver.MeasureSequenzOne(listCompareVar, timer.Elapsed.TotalMilliseconds,click1,click2);
+        if (sequenzLength == 3) DataSaver.MeasureSequenzTwo(listCompareVar,timer.Elapsed.TotalMilliseconds, click1,click2,click3);
+        if (sequenzLength == 4) DataSaver.MeasureSequenzThree(listCompareVar, timer.Elapsed.TotalMilliseconds, click1, click2, click3,click4); 
     }
 }

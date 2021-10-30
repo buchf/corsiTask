@@ -37,8 +37,11 @@ public class DataSaver : MonoBehaviour
    
     public static List<StringBuilder> results = new List<StringBuilder>();
     public static StringBuilder z2 = new StringBuilder();
+    public static StringBuilder z3 = new StringBuilder();
+    public static StringBuilder z4 = new StringBuilder();
     public StringBuilder z1 = new StringBuilder();
 
+    public static int count = 1;
 
    
 
@@ -74,6 +77,8 @@ public class DataSaver : MonoBehaviour
         z1.Append("\n,Trial no., Full Sequenz correct,Reaction Time,First click,Second click,Third click,Fourth click\n");
         results.Add(z1);
         results.Add(z2);
+        results.Add(z3);
+        results.Add(z4);
         File.WriteAllText(filePath, listToString(results));
 
     }
@@ -105,16 +110,17 @@ public class DataSaver : MonoBehaviour
      * Die Daten weden im Stringbuilder z2 abgespeichert und anschliessend
      * in der obigen Start() Funktion in die Liste results hinzugefuegt
      */
-    public static void MeasureSequenzOne(int id,bool fullSequenz, double reaction, int click1, int click2)
+    public static void MeasureSequenzOne(bool fullSequenz, double reaction, int click1, int click2)
     {
-        z2.AppendFormat(",sequenz{0},{1},{2}ms,{3},{4}\n", id , fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1 ,click2 );
+        z2.AppendFormat(",sequenz{0}_2,{1},{2}ms,{3},{4}\n", count, fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1 ,click2 );
     }
-    public static void MeasureSequenzTwo(int id, bool fullSequenz, double reaction, int click1, int click2, int click3)
+    public static void MeasureSequenzTwo(bool fullSequenz, double reaction, int click1, int click2, int click3)
     {
-        z2.AppendFormat(",sequenz{0},{1},{2}ms,{3},{4},{5}\n", id, fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1, click2, click3);
+        z3.AppendFormat(",sequenz{0}_3,{1},{2}ms,{3},{4},{5}\n", count, fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1, click2, click3);
     }
-    public static void MeasureSequenzThree(int id, bool fullSequenz, double reaction, int click1, int click2, int click3, int click4)
+    public static void MeasureSequenzThree(bool fullSequenz, double reaction, int click1, int click2, int click3, int click4)
     {
-        z2.AppendFormat(",sequenz{0},{1},{2}ms,{3},{4},{5},{6}\n", id, fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1, click2, click3, click4); ;
+        z4.AppendFormat(",sequenz{0}_4,{1},{2}ms,{3},{4},{5},{6}\n", count, fullSequenz, reaction.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), click1, click2, click3, click4);
+        count++;
     }
 }
