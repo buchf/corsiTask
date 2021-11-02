@@ -69,8 +69,7 @@ public class Player : MonoBehaviour
 
     /*
      * Der Timer wird beim Aufruf der CompareList Funktion gestoppt und anschliessen wird die Zeit zur Gesamten Zeit addiert
-     * CurrentSequenzCounter wird erhoeht (variable ist nur notwendig fuer die CSV datei spaeter um die Trial no. zu benennen)
-     * 
+     *      * 
      * x und y sind jeweils die laengen von der geklickten Liste und der Sequenz Liste. y ist z.B. maximal 4
      * 
      * der Array clicks wird mit einer laenge von 4 erstellt mit einer -1 an jeder Stelle
