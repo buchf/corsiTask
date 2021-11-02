@@ -18,11 +18,6 @@ public class DataSaver : MonoBehaviour
 
     public static string rightTask, falseTask, totalClicks, accuracy;
     public static double totalTime;
-   // public static string accuracy, totalClicks;
-    public Text amountRightTask;
-    public Text amountFalseTask;
-    public Text totalClicksCounter;
-    public Text totalAccuracyCounter;
     public float accuracyPercentage = 0.0f;
 
     //Number for full programm for e.g.  (2 + 3 + 4) * 8 Trials = 72
@@ -36,6 +31,8 @@ public class DataSaver : MonoBehaviour
     public static string filePath;
    
     public static List<StringBuilder> results = new List<StringBuilder>();
+
+    //z2 sind die strings fuer die sequenzen mit 2 erwarteten inputs, z3 mit 3 inputs, z4 mit 4inputs 
     public static StringBuilder z2 = new StringBuilder();
     public static StringBuilder z3 = new StringBuilder();
     public static StringBuilder z4 = new StringBuilder();
@@ -54,13 +51,7 @@ public class DataSaver : MonoBehaviour
 
 
         accuracyPercentage = float.Parse(accuracy) / amountOfFullCorsiTaskClicks * 100;
-        amountRightTask.text = "Richtige Sequenzen: " + rightTask;
-        amountFalseTask.text = "Falsche Sequenzen: " + falseTask;
-        totalClicksCounter.text = "Anzahl Klicks: " + totalClicks;
-        totalAccuracyCounter.text = "Accuracy: " + accuracyPercentage.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "%";
-
-
-
+       
         /*
          * z1 ist die Struktur fuer die "overall" - Results
          * z1 ist zustaendig fuer die gesamten richtigen Sequenzen, die Genauigkeit 
