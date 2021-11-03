@@ -9,10 +9,8 @@ public class Randomizer : MonoBehaviour
 
     [SerializeField] List<Transform> blocks = new List<Transform>();
     public GameObject fairy;
-    public int randomBlock;
     private Player player;
     float speed = 1f;
-    private List<int> randomNumbers = new List<int>();
     int count1, count2 = 0;
     
 
@@ -31,7 +29,7 @@ public class Randomizer : MonoBehaviour
         //Debug.Log(DataSaver.filePath.ToString());
         fairy.SetActive(true);
         fairy.transform.position = new Vector3(-7f, 3f, -1);
-        randomNumbers.Clear();
+
         
         if (count1 == 3 && count2 != 7)
         {
@@ -44,9 +42,7 @@ public class Randomizer : MonoBehaviour
         {
             //Finish the whole Sequenz so the OutroScene is loaded
             Debug.Log("FINISH");
-            DataSaver.falseTask = player.falseTaskCounter.ToString();
             DataSaver.rightTask = player.rightTaskCounter.ToString();
-            DataSaver.totalClicks = player.totalClicksCounter.ToString();
             DataSaver.accuracy = player.accuracyCounter.ToString();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -233,7 +229,7 @@ public class Randomizer : MonoBehaviour
      */
     IEnumerator SequenzOne(int a, int b)
     {
-        disabeleField();
+        disableField();
         
         yield return new WaitForSeconds(speed);
         SpawnFairyInBlock(a);
@@ -247,7 +243,7 @@ public class Randomizer : MonoBehaviour
 
     IEnumerator SequenzTwo(int a, int b, int c)
     {
-        disabeleField();
+        disableField();
         yield return new WaitForSeconds(speed);
         SpawnFairyInBlock(a);
         yield return new WaitForSeconds(speed);
@@ -262,7 +258,7 @@ public class Randomizer : MonoBehaviour
 
     IEnumerator SequenzThree(int a, int b, int c , int d)
     {
-        disabeleField();
+        disableField();
         yield return new WaitForSeconds(speed);
         SpawnFairyInBlock(a);
         yield return new WaitForSeconds(speed);
@@ -295,7 +291,7 @@ public class Randomizer : MonoBehaviour
         button.interactable = true;
         
     }
-    public void disabeleField()
+    public void disableField()
     {
         
         for (int i = 0; i < blocks.Count; i++)

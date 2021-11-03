@@ -9,11 +9,8 @@ public class Player : MonoBehaviour
 
     public List<GameObject> clickedBlocks = new List<GameObject>();
     public List<GameObject> sequenzBlocks = new List<GameObject>();
-    //public GameObject circle;
-
 
     public int rightTaskCounter;
-    public int falseTaskCounter;
     public int accuracyCounter;
     public int totalClicksCounter;
     public static int currentSequenzCounter;
@@ -29,7 +26,6 @@ public class Player : MonoBehaviour
     {
         DataSaver.totalTime = 0.0d;
         currentSequenzCounter = 0;
-        falseTaskCounter = 0;
         rightTaskCounter = 0;
         totalClicksCounter = 0;
         accuracyCounter = 0;
@@ -128,7 +124,6 @@ public class Player : MonoBehaviour
             timer.Reset();
             return listCompareVar;
         }
-        falseTaskCounter++;
         WriteInDatasaver(clicks[0], clicks[1], clicks[2], clicks[3], y);
         timer.Reset();
         return listCompareVar;

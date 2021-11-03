@@ -12,23 +12,18 @@ public class SceneSwitch : MonoBehaviour
      */
 
     private string inputVPN = "";
-    public void startGame()
+    public void StartGame()
     {
         DataSaver.VPN = inputVPN;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void playGame()
+    public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void backGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
-
-    public void backStart()
+    public void BackStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
     }

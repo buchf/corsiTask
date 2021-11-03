@@ -16,7 +16,7 @@ public class DataSaver : MonoBehaviour
 {
 
 
-    public static string rightTask, falseTask, totalClicks, accuracy;
+    public static string rightTask, accuracy;
     public static double totalTime;
     public float accuracyPercentage = 0.0f;
 
@@ -70,7 +70,7 @@ public class DataSaver : MonoBehaviour
         results.Add(z2);
         results.Add(z3);
         results.Add(z4);
-        File.WriteAllText(filePath, listToString(results));
+        File.WriteAllText(filePath, ListToString(results));
 
     }
 
@@ -79,7 +79,7 @@ public class DataSaver : MonoBehaviour
      * Notwendige funktion um die Liste results in einen String umzuwandeln,
      * da die Funktion File.WriteAllText() einen String benoetigt
      */
-    private string listToString(List<StringBuilder> results)
+    private string ListToString(List<StringBuilder> results)
     {
         string x = "";
         foreach (var element in results)
