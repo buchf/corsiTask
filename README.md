@@ -11,7 +11,7 @@ How to run it on PC :
   3. Execute the Start Scene to run the Project
 
 Versions used to build the APK:
-  JDK: jdk1.8.0_77
-  SDK: Unity Recommended
-  NDK: Unity Recommended
-  Gradle: gradle-6.5
+  - JDK: jdk1.8.0_77
+  - SDK: Unity Recommended
+  - NDK: Unity Recommended
+  - Gradle: gradle-6.5
